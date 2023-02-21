@@ -1,0 +1,19 @@
+name: Veracode Static Analysis Demo
+on: workflow_dispatch
+    
+jobs:
+  static_analysis:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v2
+          
+      - name: Veracode Upload And Scan
+        uses: veracode/veracode-uploadandscan-action@0.2.5
+        with:
+          appname: 'VeraDemo'
+          createprofile: true
+          vid: '${{ secrets.API_ID }}'
+          vkey: '${{ secrets.API_KEY }}'
